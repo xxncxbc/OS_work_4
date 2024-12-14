@@ -20,6 +20,20 @@ int main(){
     int proc_num, mess_num, delay;
     cout << "Enter number of procceses, messages and delay in ms: ";
     cin >> proc_num >> mess_num >> delay;
-    wstring Arg = L"Parent.exe " + to_wstring(mess_num) + L" " + to_wstring(delay); //аргумент для запуска Parent
+
+    wstring PArg = L"Parent.exe " + to_wstring(mess_num) + L" " + to_wstring(delay); //аргумент для запуска Parent
+    wstring CArg = L"Child.exe " + to_wstring(mess_num) + L" " + to_wstring(delay); //аргуменет для запуска Children
+
+    for (int i = 0; i < proc_num; ++i) { //запускаем все parent и children
+        STARTUPINFO si1 = { sizeof(si1) };
+        PROCESS_INFORMATION pi1;
+        STARTUPINFO si2 = { sizeof(si2) };
+        PROCESS_INFORMATION pi2;
+        CreateProcess(NULL, &PArg[0], NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si1, &pi1);
+        CreateProcess(NULL, &CArg[0], NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si2, &pi2);
+        parents.push_back(pi1.hProcess);
+        children.push_back(pi2.hProcess);
+    }
+
 }
 
