@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <windows.h>
 #include <vector>
+#include <string>
 using namespace std;
 
 int main(){
@@ -12,7 +13,13 @@ int main(){
     HANDLE EndParent = CreateEvent(NULL, TRUE, FALSE, TEXT("EndParent"));
     HANDLE EndChild = CreateEvent(NULL, TRUE, FALSE, TEXT("EndChild"));
     HANDLE ParentSem = CreateSemaphore(NULL, 1, 1, TEXT("ParentSem"));
-    
+    HANDLE ChildMutex = CreateMutex(NULL, FALSE, TEXT("ChildMutex"));
 
+    vector<HANDLE> parents, children;
+
+    int proc_num, mess_num, delay;
+    cout << "Enter number of procceses, messages and delay in ms: ";
+    cin >> proc_num >> mess_num >> delay;
+    wstring Arg = L"Parent.exe " + to_wstring(mess_num) + L" " + to_wstring(delay); //аргумент для запуска Parent
 }
 
