@@ -33,7 +33,31 @@ int main(){
         CreateProcess(NULL, &CArg[0], NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si2, &pi2);
         parents.push_back(pi1.hProcess);
         children.push_back(pi2.hProcess);
+        CloseHandle(pi1.hThread);
+        CloseHandle(pi2.hThread);
     }
 
+
+
+    for (int i = 0; i < proc_num; ++i) { //отслеживаем окончание процессов
+        WaitForSingleObject(EndParent, INFINITE);
+        WaitForSingleObject(EndChild, INFINITE);
+        cout << "Parent #" << i << " is done!" << endl;
+        cout << "Child #" << i << " is done!" << endl;
+        ResetEvent(EndChild);
+        ResetEvent(EndParent);
+    }
+    
+    //закрываем все дескрипторы
+    for (HANDLE x : parents) CloseHandle(x);
+    for (HANDLE x : children) CloseHandle(x);
+    CloseHandle(EventA);
+    CloseHandle(EventB);
+    CloseHandle(EventC);
+    CloseHandle(EventD);
+    CloseHandle(EndParent);
+    CloseHandle(EndChild);
+    CloseHandle(ParentSem);
+    CloseHandle(ChildMutex);
 }
 
