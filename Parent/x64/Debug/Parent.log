@@ -1,0 +1,3 @@
+﻿  Parent.cpp
+C:\Users\xxncxbc\Desktop\IT\cpp\Parent\Parent.cpp(56,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Parent.vcxproj -> C:\Users\xxncxbc\Desktop\IT\cpp\OS_work_4\x64\Debug\Parent.exe

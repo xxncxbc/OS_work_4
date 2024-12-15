@@ -1,0 +1,3 @@
+﻿  Child.cpp
+C:\Users\xxncxbc\Desktop\IT\cpp\Child\Child.cpp(55,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Child.vcxproj -> C:\Users\xxncxbc\Desktop\IT\cpp\OS_work_4\x64\Debug\Child.exe
